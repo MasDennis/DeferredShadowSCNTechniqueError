@@ -22,7 +22,8 @@ class GameViewController: UIViewController {
         
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
-        cameraNode.position = SCNVector3(x: 0, y: 5, z: 15)
+        cameraNode.position = SCNVector3(x: 0, y: 5, z: 5)
+        cameraNode.eulerAngles = SCNVector3(-Float.pi / 6, 0, 0)
         scene.rootNode.addChildNode(cameraNode)
         
         let scnView = self.view as! SCNView
@@ -32,13 +33,16 @@ class GameViewController: UIViewController {
         scnView.showsStatistics = true
         scnView.backgroundColor = UIColor.black
         
+        let dirLight = SCNLight()
+        dirLight.type = .directional
+        dirLight.castsShadow = true
+        dirLight.shadowMode = .deferred
+        dirLight.shadowColor = UIColor.black.withAlphaComponent(0.75)
+        
         let dirLightNode = SCNNode()
-        dirLightNode.light = SCNLight()
-        dirLightNode.light!.type = .directional
-        dirLightNode.light!.castsShadow = true
-        dirLightNode.light!.shadowMode = .deferred
-        dirLightNode.light!.shadowColor = UIColor.black.withAlphaComponent(0.75)
+        dirLightNode.light = dirLight
         dirLightNode.eulerAngles = SCNVector3(-Float.pi / 2, 0, 0)
+        
         scnView.scene?.rootNode.addChildNode(dirLightNode)
         
         createTechnique()

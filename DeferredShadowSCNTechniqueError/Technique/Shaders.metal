@@ -35,7 +35,7 @@ vertex VertexOut colour_overlay_vertex(VertexIn in [[stage_in]],
 fragment half4 colour_overlay_fragment(VertexOut in [[stage_in]],
                                   texture2d<float, access::sample> colorSampler [[texture(0)]])
 {
-    return half4(1.0);
+    return half4(0.0, 1.0, 0.0, 1.0);
 };
 
 vertex VertexOut combine_vertex(VertexIn in [[stage_in]],
